@@ -11783,7 +11783,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -11813,7 +11813,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">view_sentence_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -11911,7 +11911,7 @@ HOMER_(CONT&#39;D: I dunno.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -11919,16 +11919,9 @@ HOMER_(CONT&#39;D: I dunno.
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
 
 <span class="k">def</span> <span class="nf">create_lookup_tables</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">index</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">word_to_int</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
-    <span class="n">int_to_word</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">counter</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">word_to_int</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">=</span><span class="n">index</span>
-        <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">word_to_int</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">int_to_word</span><span class="p">[</span><span class="n">value</span><span class="p">]</span><span class="o">=</span><span class="n">key</span>
-    
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_to_int</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="p">)}</span>
+    <span class="n">int_to_word</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create lookup tables for vocabulary</span>
 <span class="sd">    :param text: The text of tv scripts split into words</span>
@@ -11992,7 +11985,7 @@ HOMER_(CONT&#39;D: I dunno.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">token_lookup</span><span class="p">():</span>
@@ -12008,6 +12001,9 @@ HOMER_(CONT&#39;D: I dunno.
         <span class="s2">&quot;--&quot;</span><span class="p">:</span><span class="s2">&quot;dash&quot;</span><span class="p">,</span>
         <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span><span class="s2">&quot;n_l&quot;</span><span class="p">,</span>
     <span class="p">}</span>
+    
+    <span class="s2">&quot;Here I&#39;m adding vertical lines in order to avoid entering it manually&quot;</span>
+    
     <span class="k">for</span> <span class="n">val</span><span class="p">,</span><span class="n">rep</span> <span class="ow">in</span> <span class="n">tokens</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="n">tokens</span><span class="p">[</span><span class="n">val</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;||&quot;</span><span class="o">+</span><span class="n">rep</span><span class="o">+</span><span class="s2">&quot;||&quot;</span>
         
@@ -12015,6 +12011,7 @@ HOMER_(CONT&#39;D: I dunno.
 <span class="sd">    Generate a dict to turn punctuation into a token.</span>
 <span class="sd">    :return: Tokenize dictionary where the key is the punctuation and the value is the token</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
     <span class="c1"># TODO: Implement Function</span>
     <span class="k">return</span> <span class="n">tokens</span>
 
@@ -12038,7 +12035,8 @@ HOMER_(CONT&#39;D: I dunno.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Tests Passed
+<pre>{&#39;.&#39;: &#39;||dot||&#39;, &#39;,&#39;: &#39;||comma||&#39;, &#39;!&#39;: &#39;||excl_m||&#39;, &#39;?&#39;: &#39;||q_mark||&#39;, &#39;;&#39;: &#39;||semc||&#39;, &#39;)&#39;: &#39;||r_p||&#39;, &#39;&#34;&#39;: &#39;||quot_m||&#39;, &#39;\n&#39;: &#39;||n_l||&#39;, &#39;(&#39;: &#39;||l_p||&#39;, &#39;--&#39;: &#39;||dash||&#39;}
+Tests Passed
 </pre>
 </div>
 </div>
@@ -12058,7 +12056,7 @@ HOMER_(CONT&#39;D: I dunno.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12069,6 +12067,24 @@ HOMER_(CONT&#39;D: I dunno.
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;.&#39;: &#39;||dot||&#39;, &#39;,&#39;: &#39;||comma||&#39;, &#39;!&#39;: &#39;||excl_m||&#39;, &#39;?&#39;: &#39;||q_mark||&#39;, &#39;;&#39;: &#39;||semc||&#39;, &#39;)&#39;: &#39;||r_p||&#39;, &#39;&#34;&#39;: &#39;||quot_m||&#39;, &#39;\n&#39;: &#39;||n_l||&#39;, &#39;(&#39;: &#39;||l_p||&#39;, &#39;--&#39;: &#39;||dash||&#39;}
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -12084,7 +12100,7 @@ HOMER_(CONT&#39;D: I dunno.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12121,7 +12137,7 @@ HOMER_(CONT&#39;D: I dunno.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12185,7 +12201,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_inputs</span><span class="p">():</span>
@@ -12249,7 +12265,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_init_cell</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">rnn_size</span><span class="p">):</span>
@@ -12261,7 +12277,7 @@ Default GPU Device: /gpu:0
 <span class="sd">    :return: Tuple (cell, initialize state)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">basic_cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">BasicLSTMCell</span><span class="p">(</span><span class="n">num_units</span><span class="o">=</span><span class="n">rnn_size</span><span class="p">)</span>
-    <span class="n">cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">MultiRNNCell</span><span class="p">([</span><span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">BasicLSTMCell</span><span class="p">(</span><span class="n">num_units</span><span class="o">=</span><span class="n">rnn_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+    <span class="n">cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">MultiRNNCell</span><span class="p">([</span><span class="n">basic_cell</span><span class="p">])</span>
     <span class="n">cell_state</span><span class="o">=</span><span class="n">cell</span><span class="o">.</span><span class="n">zero_state</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="n">initial_state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">cell_state</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_state&quot;</span><span class="p">)</span>
     <span class="c1"># TODO: Implement Function</span>
@@ -12308,11 +12324,11 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_embed</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">):</span>
-    <span class="n">embedding</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">embed_dim</span><span class="p">],</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;embedding&quot;</span><span class="p">))</span>
+    <span class="n">embedding</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">((</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">embed_dim</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;embedding&quot;</span><span class="p">))</span>
     <span class="n">embed</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span><span class="n">input_data</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create embedding for &lt;input_data&gt;.</span>
@@ -12372,7 +12388,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_rnn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
@@ -12438,13 +12454,13 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">build_nn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">rnn_size</span><span class="p">,</span> <span class="n">input_data</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">):</span>  
     <span class="n">embed</span> <span class="o">=</span> <span class="n">get_embed</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">embed_dim</span><span class="p">)</span>
     <span class="n">outputs</span><span class="p">,</span><span class="n">state</span> <span class="o">=</span> <span class="n">build_rnn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="n">embed</span><span class="p">)</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">fully_connected</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span><span class="n">num_outputs</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">activation_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">fully_connected</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span><span class="n">num_outputs</span><span class="o">=</span><span class="n">vocab_size</span><span class="p">,</span><span class="n">activation_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">logits</span><span class="p">,</span><span class="n">state</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build part of the neural network</span>
@@ -12532,7 +12548,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_batches</span><span class="p">(</span><span class="n">int_text</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_length</span><span class="p">):</span>
@@ -12607,19 +12623,19 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Number of Epochs</span>
-<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="c1"># Batch Size</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
 <span class="c1"># RNN Size</span>
 <span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="c1"># Embedding Dimension Size</span>
 <span class="n">embed_dim</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="c1"># Sequence Length</span>
-<span class="n">seq_length</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">seq_length</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="c1"># Learning Rate</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="c1"># Show stats for every n number of batches</span>
@@ -12647,7 +12663,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[60]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12697,7 +12713,7 @@ Default GPU Device: /gpu:0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12747,56 +12763,32 @@ Default GPU Device: /gpu:0
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch   0 Batch    0/5   train_loss = 8.821
-Epoch  20 Batch    0/5   train_loss = 5.535
-Epoch  40 Batch    0/5   train_loss = 4.861
-Epoch  60 Batch    0/5   train_loss = 4.637
-Epoch  80 Batch    0/5   train_loss = 4.244
-Epoch 100 Batch    0/5   train_loss = 4.073
-Epoch 120 Batch    0/5   train_loss = 3.669
-Epoch 140 Batch    0/5   train_loss = 3.426
-Epoch 160 Batch    0/5   train_loss = 3.156
-Epoch 180 Batch    0/5   train_loss = 2.977
-Epoch 200 Batch    0/5   train_loss = 2.796
-Epoch 220 Batch    0/5   train_loss = 2.636
-Epoch 240 Batch    0/5   train_loss = 2.492
-Epoch 260 Batch    0/5   train_loss = 2.491
-Epoch 280 Batch    0/5   train_loss = 2.429
-Epoch 300 Batch    0/5   train_loss = 2.283
-Epoch 320 Batch    0/5   train_loss = 2.235
-Epoch 340 Batch    0/5   train_loss = 2.204
-Epoch 360 Batch    0/5   train_loss = 2.177
-Epoch 380 Batch    0/5   train_loss = 2.155
-Epoch 400 Batch    0/5   train_loss = 2.134
-Epoch 420 Batch    0/5   train_loss = 2.121
-Epoch 440 Batch    0/5   train_loss = 2.114
-Epoch 460 Batch    0/5   train_loss = 3.350
-Epoch 480 Batch    0/5   train_loss = 2.444
-Epoch 500 Batch    0/5   train_loss = 2.190
-Epoch 520 Batch    0/5   train_loss = 2.156
-Epoch 540 Batch    0/5   train_loss = 2.138
-Epoch 560 Batch    0/5   train_loss = 2.128
-Epoch 580 Batch    0/5   train_loss = 2.121
-Epoch 600 Batch    0/5   train_loss = 2.117
-Epoch 620 Batch    0/5   train_loss = 2.114
-Epoch 640 Batch    0/5   train_loss = 2.111
-Epoch 660 Batch    0/5   train_loss = 2.109
-Epoch 680 Batch    0/5   train_loss = 2.108
-Epoch 700 Batch    0/5   train_loss = 2.107
-Epoch 720 Batch    0/5   train_loss = 2.106
-Epoch 740 Batch    0/5   train_loss = 2.105
-Epoch 760 Batch    0/5   train_loss = 2.104
-Epoch 780 Batch    0/5   train_loss = 2.103
-Epoch 800 Batch    0/5   train_loss = 2.103
-Epoch 820 Batch    0/5   train_loss = 2.103
-Epoch 840 Batch    0/5   train_loss = 2.102
-Epoch 860 Batch    0/5   train_loss = 2.102
-Epoch 880 Batch    0/5   train_loss = 2.101
-Epoch 900 Batch    0/5   train_loss = 3.807
-Epoch 920 Batch    0/5   train_loss = 2.647
-Epoch 940 Batch    0/5   train_loss = 2.195
-Epoch 960 Batch    0/5   train_loss = 2.157
-Epoch 980 Batch    0/5   train_loss = 2.142
+<pre>Epoch   0 Batch    0/26   train_loss = 8.824
+Epoch   3 Batch   22/26   train_loss = 3.919
+Epoch   7 Batch   18/26   train_loss = 2.858
+Epoch  11 Batch   14/26   train_loss = 2.115
+Epoch  15 Batch   10/26   train_loss = 1.641
+Epoch  19 Batch    6/26   train_loss = 1.223
+Epoch  23 Batch    2/26   train_loss = 1.045
+Epoch  26 Batch   24/26   train_loss = 0.763
+Epoch  30 Batch   20/26   train_loss = 0.626
+Epoch  34 Batch   16/26   train_loss = 0.524
+Epoch  38 Batch   12/26   train_loss = 0.401
+Epoch  42 Batch    8/26   train_loss = 0.385
+Epoch  46 Batch    4/26   train_loss = 0.333
+Epoch  50 Batch    0/26   train_loss = 0.251
+Epoch  53 Batch   22/26   train_loss = 0.211
+Epoch  57 Batch   18/26   train_loss = 0.177
+Epoch  61 Batch   14/26   train_loss = 0.177
+Epoch  65 Batch   10/26   train_loss = 0.176
+Epoch  69 Batch    6/26   train_loss = 0.159
+Epoch  73 Batch    2/26   train_loss = 0.161
+Epoch  76 Batch   24/26   train_loss = 0.141
+Epoch  80 Batch   20/26   train_loss = 0.159
+Epoch  84 Batch   16/26   train_loss = 0.171
+Epoch  88 Batch   12/26   train_loss = 0.148
+Epoch  92 Batch    8/26   train_loss = 0.156
+Epoch  96 Batch    4/26   train_loss = 0.146
 Model Trained and Saved
 </pre>
 </div>
@@ -12817,7 +12809,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12842,7 +12834,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
@@ -12880,7 +12872,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_tensors</span><span class="p">(</span><span class="n">loaded_graph</span><span class="p">):</span>
@@ -12937,7 +12929,7 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pick_word</span><span class="p">(</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">int_to_vocab</span><span class="p">):</span>
@@ -12997,12 +12989,12 @@ Model Trained and Saved
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[69]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen_length</span> <span class="o">=</span> <span class="mi">1500</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gen_length</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="c1"># homer_simpson, moe_szyslak, or Barney_Gumble</span>
-<span class="n">prime_word</span> <span class="o">=</span> <span class="s1">&#39;moe_szyslak&#39;</span>
+<span class="n">prime_word</span> <span class="o">=</span> <span class="s1">&#39;homer_simpson&#39;</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">DON&#39;T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE</span>
@@ -13061,116 +13053,41 @@ Model Trained and Saved
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from ./save
-moe_szyslak: oh, the years
+homer_simpson:(grumbling) lousy, stupid denver.
+homer_simpson: the usual, moe. a beer and a wad of why.
+barney_gumble:(horrified) oh, no. oh, is it...(sighs)
+homer_simpson:(to scully) you and me and dance around my couch.
+moe_szyslak: i made that last one up.
 
 
-homer_simpson:(to homer) huh. i can&#39;t work my best been better beer in this world.
-carl_carlson: homer, homer, moe.
-homer_simpson:(to uh... and i&#39;ll more a while...
-homer_simpson:(to phone) wow, hey, uh, are you guys no more. if only does your old fat bad. i let me the man who better is home and that&#39;s not all. you gotta say you boy.
-homer_simpson: you know, i know. i think i&#39;ll have that with a beautiful boy!(. who... that&#39;s those! let&#39;s say you can get you that from years.
-carl_carlson: what are we&#39;re goin&#39; on, there we a good friend. i sure do thinking of this for a uh, now you well i can.
-carl_carlson: i was not sure.
+homer_simpson: hey moe, you got any cough syrup?
+homer_simpson: i demand satisfaction!(slaps moe with glove) i challenge you to a cow college!
+lenny_leonard: oh, you&#39;re only calling us a cow college!
+lenny_leonard: oh, i don&#39;t know, i just ain&#39;t comfortable hanging on his other.
+barney_gumble:(gasps) precious alcohol! soaking into shag.
+barney_gumble:(sighs) my god, homer! i got a very thoughtless birthday present was really?
+barney_gumble: maybe i should be heading home.
+lenny_leonard:(anguished) oh no, he stepped on the bow!
+moe_szyslak: okay, a&#34; bar in the middle of things worse.
+moe_szyslak: it&#39;s too late-- i don&#39;t have to train a new bartender to make what i like...
+homer_simpson:(scoffs) who wants to eat a loser?
+kemi: i don&#39;t care about the color of your skin, lenny. you&#39;re my... what am i lookin&#39; at? i don&#39;t see nothin&#39;. i&#39;m gonna go.
+lenny_leonard: that&#39;s why i&#39;m spending my remaining scratcher winnings on a kick-ass party for all you. you&#39;ve got to pull up your diaper, get out there, and be my guest.
 
 
-marge_simpson:(to duff, then, to phone) we&#39;re day there! i uh...
-homer_simpson:(to and put it his face it&#39;s the his head.
-moe_szyslak:(duff) huh.
-moe_szyslak:(to homer) i&#39;ll mean. no one that&#39;s one.
-
-
-moe_szyslak:(reading) this is gonna let me good one, i&#39;ll drink you can guys, moe&#39;s not-- here we, uh, this is they had a little what i&#39;ve been make to say.
-moe_szyslak:(to homer) marge, i mean on the alcohol is into an carl: carl:
-homer_simpson:(to moe) she mean) i&#39;m sorry, homer.!
-
-
-lenny_leonard: great my good daughter better, homer, this is uh...
-
-
-moe_szyslak:(to moe, see his head)
-moe_szyslak: yeah, yeah.
-moe_szyslak: yeah, moe. can i like to call the phone, take i then to stop?
-homer_simpson: there we a the people who can you could be good more.
-moe_szyslak: hey, what are you were gonna have to get with the carl: who...(then) check it up. i tell your friend.
-moe_szyslak:(to duff won&#39;t duff voice) you see! well, the guys so, i&#39;ve got a five friend?
-moe_szyslak: homer, i was a&#34; carl: i...
-
-
-moe_szyslak: homer, moe, i was really work.(to moe&#39;s friend, look. i just want the new guy. ah, i can think of any one of me, you&#39;ve got back on it.
-moe_szyslak:(to tv) yeah?
-moe_szyslak: it&#39;s my all(loud) what? i like to have to come in before it.
-moe_szyslak: yeah. i&#39;m here with our moe in any call.
-kent_brockman: lenny is want it, it was one of no way.
-moe_szyslak: oh yeah, you gave me a beer?
-homer_simpson:(to homer) who be and over and day even everybody on are that&#39;s my friend in&#34; bar and let me all!... a. and... so i&#39;m only kind of a was.
-moe_szyslak: oh, i don&#39;t got this, you&#39;re can give show.
-carl_carlson: say, then we-- i know.
-homer_simpson:(to moe, what more guys, i sure am looking.
-moe_szyslak: or you sorry homer, but this girl thought you can uh, it&#39;s...
-
-
-moe_szyslak: uh, that&#39;s sweet.
-moe_szyslak:(to moe, this drink better guy.
-moe_szyslak: oh, well, are you boy.
-homer_simpson: yeah, i can&#39;t get lenny is girl. i&#39;ll be in the two of us can&#39;t just the wrong.
-homer_simpson: oh, this man is my and...
-moe_szyslak: yeah. hey, if you could put it to give great made with how will can i tell it?
-lenny_leonard: i don&#39;t need &#39;em? beer you work with some drinkin&#39; beer at who.
-
-
-moe_szyslak:(into phone) okay? i know. but who can and...
-marge_simpson: you know, i will have a new life?
-carl_carlson:(reading) do what? i can&#39;t wait a minute now homer, bart.
-homer_simpson:(into phone) shut up, you. you know, i just keep not...(to see) what that come in the best.
-
-
-lenny_leonard: no sure i gotta take an old face time.
-carl_carlson: hey, homer, hello. but who are you so back. i don&#39;t even have to drink you make any beer?
-moe_szyslak: go, and i&#39;m looking?
-homer_simpson: oh, i was getting world is long time all.
-homer_simpson: hey moe simpson.
-carl_carlson: homer, what the hell, i know a good way.(to moe) this, do it.
-homer_simpson:(a little what this is a little people.
-homer_simpson:(old beer) well, sorry we&#39;re on&#34; too?
-homer_simpson: well, what are you gonna be okay?
-moe_szyslak:(loud) no, the way, better it&#39;s...
-
-
-carl_carlson: don&#39;t guys care is in the name...(&#34;) what&#34; the only way to stop off a very in with the carl: by the of us, and then i never saw to homer homer simpson.
-homer_simpson: to a good time.
-moe_szyslak: yeah that&#39;s great. ah, you beautiful, you...
-moe_szyslak: yeah. a...
-moe_szyslak: yeah.
-homer_simpson: okay. the best...
-homer_simpson:(to moe) why can&#39;t i here&#39;s great all it&#39;s the work them to check on before.
-moe_szyslak:(sobs at your in homer&#39;s in homer&#39;s mr. yeah!!
-homer_simpson: i can&#39;t help you on the duff.(more) oh, better like my man.
-
-
-lenny_leonard: now, when you guys it about a the people little time your carl:
-moe_szyslak: homer, homer, if this love?
-homer_simpson:(to moe) there.(to homer) i got a little for he&#39;s a life?
-barney_gumble: aw, a little. i&#39;m right. &#39;cause my little girl we can love.
-moe_szyslak: yeah, i don&#39;t want that.
-carl_carlson: no, but i was not&#34; good by as.
-moe_szyslak: yeah.
-homer_simpson:(in all should just check moe marge) boy, the hell is mr. duff name, uh...
-homer_simpson: yeah, you got you, lenny and then-- that&#39;s you&#39;ve were so bar.
-homer_simpson: well, i never don&#39;t know there you&#39;re way to drink with in here.
-moe_szyslak:(sobs) this! it&#39;s... what? what are you only face more.
-
-
-carl_carlson: i had a car...(to moe) hey, i was not sure.
-moe_szyslak: yeah, but i did see it is barney and ask your money with why you so good on it, the that&#39;s but what i&#39;ve got one home and all my carl.
-homer_simpson: well, you&#39;re the carl: who carl:.(then thought) i even think better like the man.
-homer_simpson: when i don&#39;t got this with me.
-moe_szyslak: ah, who ain&#39;t let me comin&#39; from in the of you.
-carl_carlson:(off me) we can ain&#39;t come in and it&#39;s getting there&#39;s looking in the little people, or the old man could do we were gonna be a job?
-barney_gumble:(we&#39;re from her off to and i&#39;m carl_carlson: for a night of any uh, look at his carl:!
-homer_simpson: well, what do you guys. take it! like a little girl you&#39;re...(then) your daughter&#34; back...
-
-
-moe_szyslak:(into phone)
+moe_szyslak: hey, homer. i got a big payday comin&#39;.
+homer_simpson: so if it&#39;s boneheaded to talk you outta seein&#39; edna, then i don&#39;t wanna know that.
+lenny_leonard: brilliant! ooh, and thanks for telling me check.
+moe_szyslak: nope.(short beat) that was my takeaway.
+homer_simpson: see, moe, you can be&#34; cueball.&#34;
+moe_szyslak: you&#39;re an idiot.
+moe_szyslak: nah, it ain&#39;t no mystery-- whole modern world got a swishifyin&#39; effect on kids today. and here&#39;s why
+moe_szyslak: okay, why don&#39;t you invite him over to dinner!
+moe_szyslak:(realizing) awwww.(into phone) ah, nah, no. makin&#39; polenta over me.
+moe_szyslak: that&#39;s a smile, right? showin&#39; teeth no, huh?
+homer_simpson:(smoothly) no, i&#39;d like a bottle of henry k.
+marge_simpson: homer, i insist have to go to the bathroom. check... how do you know what i meant.
+moe_szyslak: so marge, uh..
 </pre>
 </div>
 </div>
@@ -13188,6 +13105,19 @@ moe_szyslak:(into phone)
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
